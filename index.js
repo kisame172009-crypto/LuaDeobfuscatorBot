@@ -1,9 +1,21 @@
 const { Client, GatewayIntentBits, REST, Routes } = require('discord.js');
 const axios = require('axios');
-const deobfuscate = require('./deobfuscator');
+const express = require('express');
 
 const token = process.env.DISCORD_TOKEN;
 const clientId = process.env.CLIENT_ID;
+
+// Serveur web factice pour Render
+const app = express();
+app.get('/', (req, res) => res.send('✅ Bot Discord is alive!'));
+app.listen(3000, () => console.log('✅ Web server running on port 3000'));
+
+// Désobfuscateur basique (à améliorer)
+async function deobfuscate(code) {
+    // Pour l'instant, on renvoie le code
+    // TODO: Ajouter la vraie logique de désobfuscation Luarmor
+    return code;
+}
 
 const client = new Client({
     intents: [
